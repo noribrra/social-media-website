@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- import bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/js/bootstrap.min.js" />
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <title>Document</title>
+
+
+    <style>
+        body {
+            background-color: #f0ecff;
+        }
+        #creat-post{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 5%;
+            right: 7%;
+            height: 60px;
+            width: 60px;
+            font-size: 50px;
+            padding: auto;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0,0.3);
+        }
+        .lds-dual-ring {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+        }
+        .lds-dual-ring:after {
+            content: " ";
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 6px solid #454343;
+            border-color: #454343 transparent #454343 transparent;
+            animation: lds-dual-ring 1.2s linear infinite;
+        }
+            @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- loader -->
+
+    
+    <div id="loader" class=" position-fixed d-flex justify-content-center align-items-center   " style=" width: 100px; height: 100px; right: 0; left: 0; bottom: 0; top: 0; background-color: rgba(128, 128, 128, 0.493); border-radius: 20px; z-index: 9999999; margin: auto;">
+        <div  class="lds-dual-ring  d-flex justify-content-center align-items-center "></div>
+    </div>
+
+    <!-- creat post putton -->
+    <div  onclick="creatpostbutton()" class="bg-primary" id="creat-post">
+        +
+    </div>
+    <!-- modal -->
+    <!-- LIOGIN MODAL -->
+    <div class="  modal fade" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control" id="Usernameinput">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="passwordinput">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="loginbutton()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- register modal -->
+
+    <div class="modal fade" id="registermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">register new user</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">name</label>
+                            <input type="text" class="form-control" id="register-name-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control" id="register-username-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="register-password-input">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">profil image</label>
+                            <input type="file" class="form-control" id="profil-input">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="registerbutton()">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- creat post modal -->
+    <div class="modal fade" id="creatpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="title-model">Create New Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Title</label>
+                            <input type="text" class="form-control" id="title-input">
+
+
+                            <input type="hidden"  id="post-id" value="">
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea name="" id="body-input" style="width: 100% ; border-radius: 10px; height: 90px;border-color: gray; resize: none;"></textarea> 
+                            
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Image</label>
+                            <input type="file" class="form-control" id="imag-input">
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="model-button" type="button" class="btn btn-primary" onclick="createpostsclick()">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete modal -->
+    <div class="modal fade" id="delit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="title-model">Are tou sure you want to delete ?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <input type="hidden" id="delet-post-id">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="model-button" type="button" class="btn btn-danger" onclick="deletepost()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
+
+    <!-- alerts -->
+    
+    <div id="liveAlertPlaceholder" class="show fade " style="position: fixed; right: 0 ;bottom: 0; width: 30%; z-index: 999; " >
+        
+    </div>
+
+
+    <!-- nav bar -->
+    <div class="container ">
+        <div class="d-flex justify-content-center">
+            <div class="col-9 ">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary shadow rounded pt-2">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="index.html">Nor</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="cursor: pointer;" id="profilpage">Profile</a>
+                                </li>
+
+                            </ul>
+                            <div id="login_div" class="d-flex justify-content-end w-100">
+                                <button id="login_btn" class="btn btn-outline-success mx-2" data-bs-toggle="modal"
+                                    data-bs-target="#loginmodal">Login</button>
+                                <button id="register_btn"  data-bs-target="#registermodal" data-bs-toggle="modal" class="btn btn-outline-success">Register</button>
+                            </div>
+
+                            <!-- for loged in user -->
+                            <div  id="logout_div"  class="d-flex justify-content-end w-100 align-items-center ">
+                                <div  id="profil">
+                                    <img id="profilimage" style="width: 40px ; height: 40px; border-radius: 50%;" src=""  alt="">
+                                    <b id="username-profil" style="margin-right: 10px;">@nowwr</b>
+                                </div>
+                                <button id="logout_btn" class="btn btn-outline-danger" onclick="logout()">logout</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+    <!--end nav bar -->
+    <!-- posts content -->
+    <div class="container ">
+        <div class="d-flex justify-content-center mt-5">
+            <div class="col-9 ">
+                <div id="posts">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</body>
+<script src="node_modules/axios/dist/axios.min.js"></script>
+<script src="script.js"></script>
+
+</html>
