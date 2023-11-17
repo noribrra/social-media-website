@@ -6,6 +6,7 @@ using api from termizacadmy
 
 it is basic web 
 it have login and singup
+and infinite scroll 
 and creat post
 and add comment
 and show comment
